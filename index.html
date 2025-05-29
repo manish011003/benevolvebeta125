@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BenevolvAI - AI & Machine Learning Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2300d4ff" stroke-width="0.3" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #00a8cc, #0080ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            to { text-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #0080ff);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+
+        /* Services */
+        .services {
+            background: #f8fafc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff, #0080ff);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        /* About */
+        .about {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        /* Contact */
+        .contact {
+            background: #f8fafc;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            color: #64748b;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0080ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation utilities */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00d4ff, #0080ff);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">BenevolvAI</a>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('hero')">Home</a></li>
+                <li><a onclick="scrollToSection('services')">Services</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Business with AI</h1>
+            <p>BenevolvAI empowers European and American businesses with cutting-edge machine learning solutions. Harness the power of artificial intelligence to drive innovation and achieve your goals.</p>
+            <button class="cta-button" onclick="scrollToSection('contact')">Get Started Today</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🤖</div>
+                    <h3>Custom AI Solutions</h3>
+                    <p>Tailored machine learning models and AI systems designed specifically for your business needs and industry requirements.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📊</div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Advanced analytics solutions that help you forecast trends, optimize operations, and make data-driven decisions with confidence.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Process Automation</h3>
+                    <p>Streamline your workflows and reduce manual tasks with intelligent automation powered by machine learning algorithms.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎯</div>
+                    <h3>ML Strategy Consulting</h3>
+                    <p>Expert guidance on implementing machine learning strategies that align with your business objectives and drive growth.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔍</div>
+                    <h3>Data Analysis & Insights</h3>
+                    <p>Uncover hidden patterns and valuable insights from your data to improve decision-making and business performance.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛠️</div>
+                    <h3>AI Implementation</h3>
+                    <p>End-to-end implementation services ensuring smooth integration of AI solutions into your existing infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Leading AI Innovation</h2>
+                    <p>At BenevolvAI, we're dedicated to empowering businesses across Europe and America with transformative machine learning solutions. Our team of skilled professionals combines deep industry knowledge with cutting-edge AI technologies.</p>
+                    <p>We specialize in providing tailored strategies and technical expertise that enable organizations to leverage advanced analytics, optimize operations, and enhance decision-making processes.</p>
+                    <p>Whether you're looking to implement predictive analytics, automate processes, or develop custom AI solutions, we're your trusted partner in navigating the complexities of machine learning.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">100+</div>
+                        <div>Projects Delivered</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div>Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">95%</div>
+                        <div>Success Rate</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div>Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Discuss Your AI Journey</h3>
+                    <p>Ready to transform your business with machine learning? We'd love to hear about your project and explore how we can help you achieve your goals.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            hello@benevolv.ai
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +1 (555) 123-4567
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌍</div>
+                        <div>
+                            <strong>Locations</strong><br>
+                            Europe & North America
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service...</option>
+                            <option value="custom-ai">Custom AI Solutions</option>
+                            <option value="predictive-analytics">Predictive Analytics</option>
+                            <option value="process-automation">Process Automation</option>
+                            <option value="ml-strategy">ML Strategy Consulting</option>
+                            <option value="data-analysis">Data Analysis & Insights</option>
+                            <option value="ai-implementation">AI Implementation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Project Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="10k-25k">$10k - $25k</option>
+                            <option value="25k-50k">$25k - $50k</option>
+                            <option value="50k-100k">$50k - $100k</option>
+                            <option value="100k+">$100k+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project, goals, and how we can help..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#careers">Careers</a>
+                <a href="#blog">Blog</a>
+            </div>
+            <p>&copy; 2025 BenevolvAI. All rights reserved. Empowering businesses with intelligent solutions.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                event.target.reset();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 2000);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => observer.observe(card));
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
